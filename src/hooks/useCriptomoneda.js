@@ -21,16 +21,16 @@ const Select = styled.select`
   border: none;
 `;
 
-const useMoneda = (label, stateInicial, opciones) => {
+const useCriptomoneda = (label, stateInicial, opciones) => {
   const [state, actualizarState] = useState(stateInicial);
 
-  const Seleccionar = () => (
+  const SeleccionarCripto = () => (
     <Fragment>
       <Label>{label}</Label>
       <Select onChange={(e) => actualizarState(e.target.value)} value={state}>
         <option value=""> Seleccionar </option>
         {opciones.map((opcion) => (
-          <option key={opcion.CoinInfo.FullName} value={opcion.CoinInfo.Name}>
+          <option key={opcion.codigo} value={opcion.codigo}>
             {opcion.nombre}
           </option>
         ))}
@@ -38,7 +38,7 @@ const useMoneda = (label, stateInicial, opciones) => {
     </Fragment>
   );
 
-  return [state, actualizarState, Seleccionar];
+  return [state, actualizarState, SeleccionarCripto];
 };
 
-export default useMoneda;
+export default useCriptomoneda;
