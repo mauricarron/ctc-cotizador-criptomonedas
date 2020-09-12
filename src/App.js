@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import imagen from "./cryptomonedas.png";
 import Formulario from "./components/Formulario";
 import axios from "axios";
+import Cotizacion from "./components/Cotizacion";
 
 const Contenedor = styled.div`
   max-width: 900px;
@@ -62,6 +63,7 @@ function App() {
           guardarMoneda={guardarMoneda}
           guardarCripto={guardarCripto}
         />
+        <Cotizacion resultado={resultado} />
       </div>
     </Contenedor>
   );
