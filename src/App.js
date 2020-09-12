@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import imagen from "./cryptomonedas.png";
 import Formulario from "./components/Formulario";
@@ -35,6 +35,13 @@ const Heading = styled.h1`
 `;
 
 function App() {
+  const [moneda, guardarMoneda] = useState("");
+  const [cripto, guardarCripto] = useState("");
+
+  useEffect(() => {
+    if (moneda === "") return; //Evita el primer llamado
+    console.log("cotizando...");
+  }, [moneda, cripto]);
   return (
     <Contenedor>
       <div>
@@ -42,7 +49,10 @@ function App() {
       </div>
       <div>
         <Heading>Cotizador Criptomonedas al Instante</Heading>
-        <Formulario />
+        <Formulario
+          guardarMoneda={guardarMoneda}
+          guardarCripto={guardarCripto}
+        />
       </div>
     </Contenedor>
   );
