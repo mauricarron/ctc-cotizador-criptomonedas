@@ -23,6 +23,7 @@ const Boton = styled.input`
 
 const Formulario = () => {
   const [listaCripto, guardarListaCripto] = useState([]);
+  const [error, guardarError] = useState(false);
 
   const MONEDAS = [
     { codigo: "USD", nombre: "Dolar de Estados Unidos" },
@@ -52,8 +53,18 @@ const Formulario = () => {
     consultarApi();
   }, []);
 
+  const cotizarMoneda = (e) => {
+    e.preventDefault();
+    if (moneda === "" || criptomoneda === "") {
+      guardarError(true);
+      return;
+    }
+    guardarError(false);
+  };
+
   return (
-    <form>
+    <form onSubmit={cotizarMoneda}>
+      {error ? "Ambos campos son obligatorios" : null}
       <SeleccionarMonedas />
       <SeleccionarCripto />
       <Boton type="submit" value="Calcular" />
